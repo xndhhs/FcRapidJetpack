@@ -1,7 +1,6 @@
 package ro.fcrapid.fcrapidjetpack.ui.contact
 
 import android.content.res.Configuration
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
