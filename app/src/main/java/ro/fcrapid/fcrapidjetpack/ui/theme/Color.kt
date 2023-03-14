@@ -1,0 +1,43 @@
+package ro.fcrapid.fcrapidjetpack.ui.theme
+
+import androidx.compose.ui.graphics.Color
+
+
+val lightPrimary = Color(0xFF892d38)
+val lightPrimaryContainer = Color(0xFF592C82)
+val lightOnPrimaryContainer = Color(0xFFE7E0ED)
+val lightInversePrimary = Color(0xFF592C82)
+val lightSecondary = Color(0xFF006C7D)
+val lightSecondaryContainer = Color(0xFF347954)
+val lightTertiary = Color(0xFF0070B9)
+val lightOnPrimary = Color(0xFFFFFFFF)
+val lightOnSecondary = Color(0xFFFFFFFF)
+val lightError = Color(0xFFD80443)
+val lightOutline = Color(0xFF6C6C6C)
+val lightOutlineVariant = Color(0xFFDCDCDC)
+val lightBackground = Color(0xFFFAFAFA)
+val lightInverseSurface = Color(0xFF949494)
+val lightSurfaceVariant = Color(0xFFFFFFFF)
+val lightSurfaceTint = Color(0xFF8959B5)
+val lightOnSurface = Color(0xFF323232)
+val lightOnSurfaceVariant = Color(0xFF595959)
+
+
+val darkPrimary = Color(0xFF892d38)
+val darkPrimaryContainer = Color(0xFF3A1D56)
+val darkOnPrimaryContainer = Color(0xFF3A1D56)
+val darkInversePrimary = Color(0xFFE7E0ED)
+val darkSecondary = Color(0xFF00AAC6)
+val darkSecondaryContainer = Color(0xFF4BBF81)
+val darkTertiary = Color(0xFF2FA2ED)
+val darkOnPrimary = Color(0xFFFFFFFF)
+val darkOnSecondary = Color(0xFF1A1A1A)
+val darkError = Color(0xFFFF3370)
+val darkOutline = Color(0xFFC2C2C2)
+val darkOutlineVariant = Color(0xFF323232)
+val darkBackground = Color(0xFF1A1A1A)
+val darkInverseSurface = Color(0xFF767676)
+val darkSurfaceVariant = Color(0xFF1F1F1F)
+val darkSurfaceTint = Color(0xFFC095E8)
+val darkOnSurface = Color(0xFFDCDCDC)
+val darkOnSurfaceVariant = Color(0xFFC2C2C2)
