@@ -4,11 +4,21 @@ import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
@@ -17,19 +27,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ro.fcrapid.fcrapidjetpack.R
-import ro.fcrapid.fcrapidjetpack.models.PlayerModel
 import ro.fcrapid.fcrapidjetpack.ui.theme.rapid_font
-import java.util.*
 
 
 @Composable
-fun PlayerItemView(playerModel: PlayerModel) {
-    Card(modifier = Modifier
-        .fillMaxWidth()
-        .padding(16.dp),
+fun TeamMemberView(name: String, role: String, shirtNumber: String?, icon: Int) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
-        shape = RoundedCornerShape(16.dp),
-
+        shape = RoundedCornerShape(16.dp)
     ) {
         Row(
             modifier = Modifier
@@ -38,9 +46,7 @@ fun PlayerItemView(playerModel: PlayerModel) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = CenterVertically
         ) {
-            Row(modifier = Modifier
-                .weight(0.8f)
-                .fillMaxWidth()) {
+            Row(verticalAlignment = CenterVertically) {
                 Card(
                     shape = RectangleShape,
                     modifier = Modifier
@@ -50,48 +56,33 @@ fun PlayerItemView(playerModel: PlayerModel) {
                     border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
                 ) {
                     Image(
-                        painter = painterResource(id = playerModel.playerIcon),
-                        contentDescription = playerModel.playerName
+                        painter = painterResource(id = icon),
+                        contentDescription = name
                     )
                 }
-                Spacer(modifier = Modifier.width(8.dp))
-                Column() {
-                    Row(verticalAlignment = Alignment.Top) {
-                        Text(text = "Nume: ", style = MaterialTheme.typography.labelSmall)
-                        Text(
-                            text = playerModel.playerName,
-                            style = MaterialTheme.typography.labelSmall
-                        )
-                    }
-                    Row(verticalAlignment = Alignment.Top) {
-                        Text(text = "Pozitie: ", style = MaterialTheme.typography.labelSmall)
-                        Text(
-                            text = playerModel.playerPosition,
-                            style = MaterialTheme.typography.labelSmall
-                        )
-                    }
+                Spacer(modifier = Modifier.width(16.dp))
+                Column {
+                    Text(
+                        text = name.uppercase(),
+                        style = MaterialTheme.typography.titleSmall,
+                    )
+                    Text(
+                        text = role,
+                        style = MaterialTheme.typography.labelLarge
+                    )
                 }
-                Spacer(modifier = Modifier.width(8.dp))
             }
-            Row(
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = CenterVertically,
-                modifier = Modifier.weight(0.3f).fillMaxWidth()
-            ) {
-
+            if (shirtNumber != null) {
                 Text(
-                    text = playerModel.playerShirtNumber,
+                    text = shirtNumber.toString(),
                     fontFamily = rapid_font,
-                    fontSize = 80.sp,
+                    fontSize = 64.sp,
                     style = MaterialTheme.typography.headlineLarge,
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.align(CenterVertically)
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
         }
-
     }
-
 }
 
 @Preview
@@ -102,19 +93,12 @@ fun PlayerItemPreview() {
         modifier = Modifier.fillMaxWidth(),
         color = MaterialTheme.colorScheme.primary
     ) {
-        PlayerItemView(
-            playerModel = PlayerModel(
-                playerName = "Horatiu Moldovan",
-                playerPosition = "Portar",
-                playerAge = 24,
-                playerBirthDate = Date(1990, 6, 26),
-                playerGoals = 0,
-                playerIcon = R.drawable.player_31_moldovan,
-                playerMatches = 30,
-                playerGoalsCurrentSeason = 0,
-                playerMatchesCurrentSeason = 30,
-                playerShirtNumber = "31"
+        TeamMemberView(
+            name = "Horatiu Moldovan",
+            role = "Portar",
+            icon = R.drawable.player_31_moldovan,
+            shirtNumber = "31",
+
             )
-        )
     }
 }

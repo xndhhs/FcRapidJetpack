@@ -1,24 +1,31 @@
-package ro.fcrapid.fcrapidjetpack
+package ro.fcrapid.fcrapidjetpack.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import okhttp3.*
+import ro.fcrapid.fcrapidjetpack.Constants
+import ro.fcrapid.fcrapidjetpack.R
+import ro.fcrapid.fcrapidjetpack.client.FootballApiClient
 import ro.fcrapid.fcrapidjetpack.models.PlayerModel
 import ro.fcrapid.fcrapidjetpack.ui.FirstTeamScreen
-import ro.fcrapid.fcrapidjetpack.ui.contact.ContactDetailsScreen
-import ro.fcrapid.fcrapidjetpack.ui.history.ClubHistoryScreen
 import ro.fcrapid.fcrapidjetpack.ui.theme.FcRapidJetpackTheme
+
 
 class MainActivity : ComponentActivity() {
     private var playerList: List<PlayerModel> = emptyList()
     override fun onCreate(savedInstanceState: Bundle?) {
+        val client = FootballApiClient(Constants.API_KEY)
+        val leagueTable = client.getLeagueTable(Constants.LEAGUE_ID)
+        println("table is:")
+        println(leagueTable)
 
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,12 +34,13 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colorScheme.background
                 ) {
                     createPlayerList()
-//                    FirstTeamScreen(playerList)
+                    FirstTeamScreen(playerList)
 //                    ContactDetailsScreen()
-                    ClubHistoryScreen()
+//                    ClubHistoryScreen()
+//                    MainScreen()
                 }
             }
         }

@@ -13,6 +13,4 @@ data class PlayerModel(
     val playerMatchesCurrentSeason: Int,
     val playerGoalsCurrentSeason: Int,
     val playerIcon: Int
-) {
-
-}
+)

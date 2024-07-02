@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 
 private val LightColors = lightColorScheme(
     primary = lightPrimary,
@@ -65,21 +66,16 @@ fun FcRapidJetpackTheme(
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-            //println
         }
-        darkTheme -> {println("dark colors used")
-            DarkColors
-        }
-        else -> {
-            println("light colors used")
-            LightColors
-        }
+        darkTheme -> DarkColors
+        else -> LightColors
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            (view.context as Activity).window.statusBarColor = colorScheme.background.toArgb()
-            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = !darkTheme
+            val currentWindow = (view.context as Activity).window
+            currentWindow.statusBarColor = colorScheme.background.toArgb()
+            WindowCompat.getInsetsController(currentWindow, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
 

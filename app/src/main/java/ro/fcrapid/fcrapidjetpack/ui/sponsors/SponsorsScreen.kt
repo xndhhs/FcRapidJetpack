@@ -20,14 +20,13 @@ import androidx.compose.ui.unit.dp
 import ro.fcrapid.fcrapidjetpack.R
 import ro.fcrapid.fcrapidjetpack.models.SponsorModel
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SponsorsScreen(sponsorList: List<SponsorModel>) {
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Fixed(2),
         userScrollEnabled = true,
         horizontalArrangement = Arrangement.spacedBy(2.dp),
-        verticalArrangement = Arrangement.spacedBy(2.dp),
+        verticalItemSpacing = 2.dp,
         contentPadding = PaddingValues(8.dp),
         flingBehavior = ScrollableDefaults.flingBehavior()
     ) {
@@ -63,6 +62,8 @@ fun SponsorScreenPreview() {
     ) {
         SponsorsScreen(
             sponsorList = listOf(
+                SponsorModel("Superbet - partener principal", R.drawable.ic_sponsor_superbet),
+                SponsorModel("Mobexpert - partener secundar", R.drawable.ic_sponsor_mobexpert),
                 SponsorModel("Ferroli", R.drawable.ic_sponsor_ferolli),
                 SponsorModel("DSC", R.drawable.ic_sponsor_dsc),
                 SponsorModel("Saormeria Baneasa", R.drawable.ic_sponsor_baneasa),

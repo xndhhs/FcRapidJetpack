@@ -1,9 +1,8 @@
 package ro.fcrapid.fcrapidjetpack.ui.theme
-
 import androidx.compose.ui.graphics.Color
 
 
-val lightPrimary = Color(0xFF892d38)
+val lightPrimary = Color(0xFF892D38)
 val lightPrimaryContainer = Color(0xFF592C82)
 val lightOnPrimaryContainer = Color(0xFFE7E0ED)
 val lightInversePrimary = Color(0xFF592C82)
@@ -23,7 +22,7 @@ val lightOnSurface = Color(0xFF323232)
 val lightOnSurfaceVariant = Color(0xFF595959)
 
 
-val darkPrimary = Color(0xFF892d38)
+val darkPrimary = Color(0xFF892D38)
 val darkPrimaryContainer = Color(0xFF3A1D56)
 val darkOnPrimaryContainer = Color(0xFF3A1D56)
 val darkInversePrimary = Color(0xFFE7E0ED)
