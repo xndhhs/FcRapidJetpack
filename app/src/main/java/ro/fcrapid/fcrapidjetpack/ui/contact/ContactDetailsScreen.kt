@@ -3,14 +3,18 @@ package ro.fcrapid.fcrapidjetpack.ui.contact
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,46 +35,61 @@ fun ContactDetailsScreen() {
     ) {
         Image(
             painter = painterResource(id = R.drawable.foto_giulesti2),
-            contentDescription = "Contact details image",
-            contentScale = ContentScale.FillBounds
+            contentDescription = "Contact details image"
         )
         Spacer(modifier = Modifier.height(24.dp))
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(start = 24.dp)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.fc_rapid_bucuresti_logo),
-                contentDescription = "Rapid Logo",
-                modifier = Modifier.size(24.dp)
+        Text(
+            text = stringResource(id = R.string.contact_us_title_text),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.padding(horizontal = 24.dp)
+        )
+        Column(modifier = Modifier
+            .padding(horizontal = 24.dp)
+            .verticalScroll(rememberScrollState())) {
+            Spacer(modifier = Modifier.height(16.dp))
+            ContactDetailsItemView(
+                ONLINE_ORDER_ITEM_SYMBOL,
+                "Fotbal Club 1923 S.A. Shop online",
+                "0752.152.237",
+                "online@fcrapid.ro",
+                null
             )
-            Spacer(modifier = Modifier.width(4.dp))
-            Text(
-                text = stringResource(id = R.string.contact_us_title_text),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                style = MaterialTheme.typography.titleLarge
+            ContactDetailsItemView(
+                ONLINE_ORDER_ITEM_SYMBOL,
+                "Bilete si Abonamente",
+                "0731.968.631",
+                "ticketing@fcrapid.ro",
+                "Luni - Vineri: 9:00 - 18:00"
+            )
+            ContactDetailsItemView(
+                SCHEDULE_ITEM_SYMBOL,
+                "Program de lucru",
+                null,
+                null,
+                "STADIONUL GIULEȘTI\n" +
+                        "Luni – Vineri: 09:00 – 18:00\n" +
+                        "Sâmbătă – Duminică: 10:00 – 15:00 \n\n" +
+                        "GARA DE NORD\n" +
+                        "Luni – Duminică: 10:00 – 18:00"
+            )
+            ContactDetailsItemView(
+                ADDRESS_ITEM_SYMBOL,
+                stringResource(id = R.string.contactus_address_title),
+                null,
+                null,
+                stringResource(id = R.string.contactus_address_subtitle)
+            )
+            ContactDetailsItemView(
+                ADDRESS_ITEM_SYMBOL,
+                "Magazin de Prezentare",
+                "0743.290.882",
+                null,
+                "Calea Giulești nr. 18, 060276, Sector 6, București, Superbet Arena"
             )
         }
-        Spacer(modifier = Modifier.height(16.dp))
-        ContactDetailsItemView(
-            ADDRESS_ITEM_SYMBOL,
-            stringResource(id = R.string.contactus_address_title),
-            stringResource(id = R.string.contactus_address_subtitle)
-        )
-        ContactDetailsItemView(
-            SCHEDULE_ITEM_SYMBOL,
-            "Program de lucru",
-            "Luni – Vineri: 09:00 – 18:00\n" +
-                    "Sâmbătă: închis\n" +
-                    "Duminică: închis"
-        )
-        ContactDetailsItemView(
-            ONLINE_ORDER_ITEM_SYMBOL,
-            "Comenzi Online",
-            "0751.298.089\n" +
-                    "0752.152.237\n" +
-                    "online@fcrapid.ro"
-        )
+
+
     }
 }
 

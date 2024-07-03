@@ -2,9 +2,16 @@ package ro.fcrapid.fcrapidjetpack.ui.contact
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.selection.SelectionContainer
-import androidx.compose.material3.Divider
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -18,12 +25,14 @@ import ro.fcrapid.fcrapidjetpack.R
 import ro.fcrapid.fcrapidjetpack.ui.theme.tyrian_font
 
 @Composable
-fun ContactDetailsItemView(contactSymbol: String, sectionTitle: String, sectionSubtitle: String) {
-    Row(
-        modifier = Modifier
-            .background(MaterialTheme.colorScheme.background)
-            .padding(start = 24.dp)
-    ) {
+fun ContactDetailsItemView(
+    contactSymbol: String,
+    sectionTitle: String,
+    phoneNumber: String?,
+    email: String?,
+    additionalInfo: String?
+) {
+    Row(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
         Text(
             text = contactSymbol,
             modifier = Modifier.padding(top = 4.dp),
@@ -37,20 +46,35 @@ fun ContactDetailsItemView(contactSymbol: String, sectionTitle: String, sectionS
             Text(
                 text = sectionTitle,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.clickable {  }
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Column {
-                SelectionContainer() {
-                    Text(
-                        text = sectionSubtitle,
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
+            if (phoneNumber != null) {
+                Text(
+                    text = phoneNumber,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            if (email != null) {
+                Text(
+                    text = email,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.clickable { }
+                )
+            }
+            if (additionalInfo != null) {
+                Text(
+                    text = additionalInfo,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.clickable {  }
+                )
             }
             Spacer(modifier = Modifier.height(8.dp))
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier.fillMaxWidth(),
                 thickness = 1.dp,
                 color = MaterialTheme.colorScheme.outlineVariant
@@ -71,8 +95,9 @@ fun ContactDetailsItemPreview() {
         ContactDetailsItemView(
             "\uE98F",
             stringResource(id = R.string.contactus_address_title),
-            stringResource(id = R.string.contactus_address_subtitle
-            )
+            "072222222",
+            "test@text.com",
+            null
         )
     }
 }
