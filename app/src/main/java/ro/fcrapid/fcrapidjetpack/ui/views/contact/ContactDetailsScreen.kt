@@ -1,4 +1,4 @@
-package ro.fcrapid.fcrapidjetpack.ui.contact
+package ro.fcrapid.fcrapidjetpack.ui.views.contact
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image

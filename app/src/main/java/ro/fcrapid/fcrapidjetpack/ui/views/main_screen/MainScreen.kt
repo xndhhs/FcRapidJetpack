@@ -1,4 +1,4 @@
-package ro.fcrapid.fcrapidjetpack.ui.main_screen
+package ro.fcrapid.fcrapidjetpack.ui.views.main_screen
 
 
 import android.content.res.Configuration

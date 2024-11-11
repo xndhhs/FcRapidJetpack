@@ -1,4 +1,4 @@
-package ro.fcrapid.fcrapidjetpack.ui.history
+package ro.fcrapid.fcrapidjetpack.ui.views.history
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image

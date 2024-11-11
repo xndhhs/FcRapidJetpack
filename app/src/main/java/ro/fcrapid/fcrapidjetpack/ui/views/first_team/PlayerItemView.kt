@@ -1,4 +1,4 @@
-package ro.fcrapid.fcrapidjetpack.ui.first_team
+package ro.fcrapid.fcrapidjetpack.ui.views.first_team
 
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke

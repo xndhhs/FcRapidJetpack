@@ -1,7 +1,6 @@
 package ro.fcrapid.fcrapidjetpack.ui
 
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ro.fcrapid.fcrapidjetpack.R
 import ro.fcrapid.fcrapidjetpack.models.PlayerModel
-import ro.fcrapid.fcrapidjetpack.ui.first_team.TeamMemberView
+import ro.fcrapid.fcrapidjetpack.ui.views.first_team.TeamMemberView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
