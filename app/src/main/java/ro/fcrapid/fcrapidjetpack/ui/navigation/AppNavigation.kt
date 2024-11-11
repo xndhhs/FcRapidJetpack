@@ -10,19 +10,24 @@ import ro.fcrapid.fcrapidjetpack.ui.navigation.NavRoutes.DASHBOARD
 import ro.fcrapid.fcrapidjetpack.ui.navigation.dashboard.DashboardDestination
 
 const val MAIN_ROUTE = "main_root"
+
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(navController = navController,
         startDestination = DASHBOARD,
         route = MAIN_ROUTE,
-        enterTransition = { EnterTransition.None},
-        exitTransition = { ExitTransition.None},
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None },
         popEnterTransition = { EnterTransition.None },
         popExitTransition = { ExitTransition.None }
-        ) {
+    ) {
         composable(route = DASHBOARD) {
-            DashboardDestination(bottomController = navController)
+            val bottomNavController = rememberNavController()
+            DashboardDestination(
+                navController = navController,
+                bottomNavController = bottomNavController
+            )
         }
     }
 }
