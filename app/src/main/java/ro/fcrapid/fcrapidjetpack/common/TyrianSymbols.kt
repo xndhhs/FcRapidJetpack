@@ -7,4 +7,5 @@ object TyrianSymbols {
     const val TEAM = "\uEA8E"
     const val FIXTURES = "\uE93B"
     const val MENU = "\uE9F9"
+    const val RIGHT_ARROW = "\uE90A"
 }

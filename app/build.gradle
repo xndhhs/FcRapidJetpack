@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'ro.fcrapid.fcrapidjetpack'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "ro.fcrapid.fcrapidjetpack"
         minSdk 29
-        targetSdk 34
+        targetSdk 35
         versionCode 1
         versionName "1.0"
 
@@ -52,15 +52,15 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.core:core-ktx:1.15.0'
     //Compose Material Design
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.3'
-    implementation 'androidx.activity:activity-compose:1.9.0'
-    implementation 'androidx.compose.material3:material3:1.2.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.7'
+    implementation 'androidx.activity:activity-compose:1.9.3'
+    implementation 'androidx.compose.material3:material3:1.3.1'
     // Compose Navigation
-    implementation 'androidx.navigation:navigation-compose:2.7.7'
+    implementation 'androidx.navigation:navigation-compose:2.8.3'
     // Compose Constraint Layout
-    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0"
     //Tooling support (Previews etc.)
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
@@ -71,7 +71,7 @@ dependencies {
     // OkHttp
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.12.0'
     //Coil fod Image loading
-    implementation 'io.coil-kt:coil-compose:2.3.0'
+    implementation 'io.coil-kt:coil-compose:2.4.0'
     // Koin
     implementation "io.insert-koin:koin-android:3.5.3"
     implementation "io.insert-koin:koin-androidx-compose:3.5.3"
@@ -101,8 +101,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:1.6.8"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:1.7.5"
     //Staggered grid view
-    implementation 'androidx.compose.foundation:foundation:1.6.8'
+    implementation 'androidx.compose.foundation:foundation:1.7.5'
 
 }

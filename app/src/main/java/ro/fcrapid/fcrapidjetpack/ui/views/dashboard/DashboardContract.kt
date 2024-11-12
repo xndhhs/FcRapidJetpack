@@ -7,12 +7,16 @@ import ro.fcrapid.fcrapidjetpack.ui.views.shared_components.HomeNavigationItem
 
 class DashboardContract {
 
-    sealed class Event: ViewEvent {
+    sealed class Event : ViewEvent {
         data object OnMenu : Event()
         data object OnBack : Event()
 
-        sealed class BottomNavEvent: Event() {
-            data class OnBottomRouteChanged(val route: String): BottomNavEvent()
+        sealed class BottomNavEvent : Event() {
+            data class OnBottomRouteChanged(val route: String) : BottomNavEvent()
+            data object OnNews : BottomNavEvent()
+            data object OnFirstTeam : BottomNavEvent()
+            data object OnFixtures : BottomNavEvent()
+            data object OnProfile : BottomNavEvent()
         }
     }
 
@@ -21,7 +25,7 @@ class DashboardContract {
         val showInFullScreen: Boolean,
         val shouldShowNavDrawer: Boolean,
         val bottomNavigationItems: List<HomeNavigationItem>,
-        val shouldShowBottomNavigationItems: Boolean
+        val shouldHideBottomNavigationItems: Boolean
     ) : ViewState
 
     data class NavDrawerMenuItem(
@@ -30,9 +34,18 @@ class DashboardContract {
         val iconResource: String
     )
 
-    sealed class Effect: ViewSideEffect {
-        sealed class Navigation: Effect() {
-            data object ToFirstTeamScreen: Navigation()
+
+    sealed class Effect : ViewSideEffect {
+        sealed class Navigation : Effect() {
+            data object ToFirstTeamScreen : Navigation()
+        }
+
+        sealed class BottomNavigation : Effect() {
+            data object ToNews : BottomNavigation()
+            data object ToFirstTeam : BottomNavigation()
+            data object ToFixtures : BottomNavigation()
+            data object ToProfile : BottomNavigation()
         }
     }
+
 }

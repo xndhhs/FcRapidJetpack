@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -111,11 +112,11 @@ fun NavDrawerBody(
     onItemClick: (NavDrawerMenuItem) -> Unit
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .clip(RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp))
             .background(MaterialTheme.colorScheme.onSurfaceVariant)
             .fillMaxHeight()
-            .width(360.dp)
+            .fillMaxWidth(0.7f)
             .padding(12.dp)
     ) {
 
@@ -145,27 +146,24 @@ fun DashboardContent(
                 val focusManager = LocalFocusManager.current
 
                 DashboardHeader(
-                    name = "",
-                    isAccountScreenActive = false,
-                    onEventSent = {},
+                    name = headerText,
+                    isNewsScreenActive = state.currentRoute == NEWS,
                     onMenuEventSent = {
                         focusManager.clearFocus()
                         coroutineScope.launch { drawerState.open() }
                     }
                 )
-
             }
         },
         bottomBar = {
-            if (!state.showInFullScreen && state.shouldShowBottomNavigationItems) {
+            if (!state.showInFullScreen && !state.shouldHideBottomNavigationItems) {
                 SetNavigationItemsResources(bottomNavigationItems = state.bottomNavigationItems)
+                BottomNavigationBar(
+                    navigationItems = state.bottomNavigationItems,
+                    onEventSent = onEventSent,
+                    activeRoute = state.currentRoute
+                )
             }
-            BottomNavigationBar(
-                navigationItems = state.bottomNavigationItems,
-                onEventSent = onEventSent,
-                activeRoute = state.currentRoute
-
-            )
         },
         content = { innerPadding ->
             BottomBarHomeNavigation(
@@ -200,7 +198,7 @@ private fun SetNavigationItemsResources(bottomNavigationItems: List<HomeNavigati
                 it.title = "Echipa"
             }
 
-            is HomeNavigationItem.MyAccount -> {
+            is HomeNavigationItem.Profile -> {
                 it.icon = TyrianSymbols.PROFILE
                 it.title = "Profil"
             }
@@ -224,14 +222,12 @@ fun DashboardScreenPreview() {
                     showInFullScreen = false,
                     currentRoute = "",
                     bottomNavigationItems = listOf(),
-                    shouldShowBottomNavigationItems = false,
+                    shouldHideBottomNavigationItems = false,
                 )
             )
         }
         DashboardScreen(
             viewState = viewState,
-            navController = null,
-            bottomNavController = null,
             onEventSent = {}
         )
     }

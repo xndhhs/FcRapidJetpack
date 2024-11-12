@@ -23,7 +23,7 @@ open class HomeNavigationItem(
         override var title: String = ""
     ) : HomeNavigationItem(route, icon, title)
 
-    data class MyAccount(
+    data class Profile(
         override val route: String,
         override var icon: String = "",
         override var title: String = ""
