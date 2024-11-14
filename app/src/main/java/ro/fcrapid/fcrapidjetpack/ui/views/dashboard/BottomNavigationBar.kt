@@ -54,7 +54,7 @@ fun BottomNavigationBar(
                     selectedTextColor = MaterialTheme.colorScheme.primary,
                     unselectedIconColor = MaterialTheme.colorScheme.inverseSurface,
                     unselectedTextColor = MaterialTheme.colorScheme.inverseSurface,
-                    indicatorColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    indicatorColor = MaterialTheme.colorScheme.outlineVariant
                 ),
                 selected = activeRoute == item.route,
                 onClick = { onEventSent(getEventsFromItem(item)) }

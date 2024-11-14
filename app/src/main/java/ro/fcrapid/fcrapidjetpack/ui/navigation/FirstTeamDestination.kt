@@ -6,7 +6,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.compose.koinViewModel
-import ro.fcrapid.fcrapidjetpack.ui.FirstTeamScreen
+import ro.fcrapid.fcrapidjetpack.ui.views.first_team.FirstTeamScreen
 import ro.fcrapid.fcrapidjetpack.ui.views.base.SIDE_EFFECTS_KEY
 import ro.fcrapid.fcrapidjetpack.ui.views.first_team.FirstTeamContract.Effect.Navigation.ToPlayerDetails
 import ro.fcrapid.fcrapidjetpack.ui.views.first_team.FirstTeamContract.Effect.Navigation.ToStaffDetails

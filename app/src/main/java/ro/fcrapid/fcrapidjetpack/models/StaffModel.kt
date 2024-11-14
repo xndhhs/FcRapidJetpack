@@ -1,7 +1,8 @@
 package ro.fcrapid.fcrapidjetpack.models
 
 data class StaffModel(
-    val staffName: String,
-    val staffPosition: String)
-{
-}
+    val name: String,
+    val role: String,
+    val birthDate: String,
+    val image: Int
+)

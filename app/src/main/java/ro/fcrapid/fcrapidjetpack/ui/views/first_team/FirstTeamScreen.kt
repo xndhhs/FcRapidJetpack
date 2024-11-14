@@ -1,4 +1,4 @@
-package ro.fcrapid.fcrapidjetpack.ui
+package ro.fcrapid.fcrapidjetpack.ui.views.first_team
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -26,15 +26,15 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import ro.fcrapid.fcrapidjetpack.R
 import ro.fcrapid.fcrapidjetpack.models.PlayerModel
+import ro.fcrapid.fcrapidjetpack.models.StaffModel
 import ro.fcrapid.fcrapidjetpack.ui.theme.large
-import ro.fcrapid.fcrapidjetpack.ui.theme.mediumSmall
 import ro.fcrapid.fcrapidjetpack.ui.theme.small
 import ro.fcrapid.fcrapidjetpack.ui.theme.standard
 import ro.fcrapid.fcrapidjetpack.ui.theme.xSmall
 import ro.fcrapid.fcrapidjetpack.ui.views.first_team.FirstTeamContract.Event
+import ro.fcrapid.fcrapidjetpack.ui.views.first_team.FirstTeamContract.Event.OnHeaderTabSelected
 import ro.fcrapid.fcrapidjetpack.ui.views.first_team.FirstTeamContract.PlayerRoles.PORTARI
 import ro.fcrapid.fcrapidjetpack.ui.views.first_team.FirstTeamContract.State
-import ro.fcrapid.fcrapidjetpack.ui.views.first_team.TeamMemberView
 import ro.fcrapid.fcrapidjetpack.ui.views.shared_components.VerticalSpacer
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,32 +50,48 @@ fun FirstTeamScreen(
         PrimaryTabRow(
             selectedTabIndex = state.selectedTab,
             tabs = {
-                Tab(
-                    modifier = Modifier.background(MaterialTheme.colorScheme.background, RectangleShape),
-                    selected = state.selectedTab == 0,
-                    onClick = { /*TODO*/ }) {
-                    Text(text = "Jucatori", modifier = Modifier.padding(small))
-                }
-                Tab(
-                    modifier = Modifier.background(MaterialTheme.colorScheme.background, RectangleShape),
-                    selected = state.selectedTab == 1,
-                    onClick = { /*TODO*/ }
-                ) {
-                    Text(text = "Staff", modifier = Modifier.padding(small))
+                state.tabHeaders.forEachIndexed { index, tabHeader ->
+                    Tab(
+                        modifier = Modifier.background(
+                            MaterialTheme.colorScheme.background,
+                            RectangleShape
+                        ),
+                        selected = state.selectedTab == index,
+                        onClick = { onEventSent(OnHeaderTabSelected(tabHeader)) }
+                    ) {
+                        Text(text = tabHeader.label, modifier = Modifier.padding(small))
+                    }
                 }
             }
         )
-
-        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-            state.playersList.forEach { (key, value) ->
-                PlayerSection(key.name, value)
-            }
+        if (state.selectedTab == 0) {
+            FirstTeamSection(state)
+        } else {
+            StaffSection(state)
         }
     }
 }
 
 @Composable
-private fun PlayerSection(sectionName: String, playerList: List<PlayerModel>) {
+fun StaffSection(state: State) {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        state.staffList.forEach { (key, value) ->
+            StaffRoleSection(key.name, value)
+        }
+    }
+}
+
+@Composable
+private fun FirstTeamSection(state: State) {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        state.playersList.forEach { (key, value) ->
+            PlayerRoleSection(key.name, value)
+        }
+    }
+}
+
+@Composable
+private fun PlayerRoleSection(sectionName: String, playerList: List<PlayerModel>) {
     VerticalSpacer(height = standard)
     Text(
         text = sectionName,
@@ -103,6 +119,40 @@ private fun PlayerSection(sectionName: String, playerList: List<PlayerModel>) {
                     it.playerPosition,
                     it.playerShirtNumber,
                     it.playerIcon
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun StaffRoleSection(sectionName: String, staffList: List<StaffModel>) {
+    VerticalSpacer(height = standard)
+    Text(
+        text = sectionName.replace("_", " "),
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.background,
+        letterSpacing = MaterialTheme.typography.bodyLarge.letterSpacing,
+        modifier = Modifier
+            .background(
+                color = MaterialTheme.colorScheme.primary,
+                shape = RoundedCornerShape(standard)
+            )
+            .padding(vertical = xSmall, horizontal = small)
+    )
+    VerticalSpacer(height = standard)
+    LazyRow(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(large),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        staffList.forEach {
+            item {
+                StaffMemberView(
+                    it.name,
+                    it.role,
+                    it.birthDate,
+                    it.image
                 )
             }
         }
@@ -185,8 +235,9 @@ fun FirstTeamScreenPreview() {
                                     )
                                 )
                     ),
-                    staffList = listOf(),
-                    selectedTab = 0
+                    staffList = mapOf(),
+                    selectedTab = 0,
+                    tabHeaders = listOf()
                 )
             )
         }
